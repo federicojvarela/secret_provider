@@ -7,7 +7,7 @@ The objetive of this crate is to abstract away secret managment solutions and ha
 To use this library in your project you must include the following line in your `Cargo.toml`:
 
 ```toml
-secrets_provider = { git = "ssh://git@github.com/fortelabsinc/secrets_provider/", tag = "<<LIBRARY_VERSION>>", features = ["aws"] }
+secrets_provider = { git = "ssh://git@github.com/federicojvarela/secrets_provider/", tag = "<<LIBRARY_VERSION>>", features = ["aws"] }
 ```
 where `<<LIBRARY_VERSION>>` is the git tag of the version you want to use.
 
