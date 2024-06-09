@@ -1,0 +1,12 @@
+FROM rust:1.71 as builder
+
+WORKDIR /tests
+
+ARG GH_TOKEN
+RUN git config --global url."https://$GH_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
+
+RUN rustup self update
+
+COPY . ./
+
+ENTRYPOINT ["cargo", "test", "--all-features", "--", "--test-threads", "1", "--nocapture"]

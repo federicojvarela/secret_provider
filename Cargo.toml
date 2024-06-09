@@ -1,0 +1,40 @@
+[package]
+name = "secrets_provider"
+version = "2.0.0"
+edition = "2021"
+
+[dependencies]
+async-trait = "0.1"
+thiserror = "1"
+
+# AWS official dependencies
+aws-config = { version = "1.1.1", features = [
+    "behavior-version-latest",
+], optional = true }
+aws-sdk-secretsmanager = { version = "1.11.0", optional = true }
+
+# [DEPRECATED] Legacy Rusoto AWS dependencies
+rusoto_credential = { version = "0.48.0", optional = true }
+rusoto_core = { version = "0.48.0", optional = true }
+rusoto_secretsmanager = { version = "0.48.0", optional = true }
+rusoto_sts = { version = "0.48.0", optional = true }
+
+# Memory dependencies
+uuid = { version = "1.1.2", features = ["v4"], optional = true }
+indexmap = { version = "2.1.0", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1.21", features = ["macros", "rt", "rt-multi-thread"] }
+envy = "0.4"
+dotenv = "0.15.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[features]
+aws = ["dep:aws-config", "dep:aws-sdk-secretsmanager"]
+legacy-rusoto-aws = [
+    "dep:rusoto_credential",
+    "dep:rusoto_core",
+    "dep:rusoto_secretsmanager",
+    "dep:rusoto_sts",
+]
+memory = ["dep:uuid", "dep:indexmap"]

@@ -1,0 +1,10 @@
+FROM amazon/aws-cli
+
+RUN yum -y update && yum -y install jq
+
+WORKDIR /home/localstack/
+
+COPY ./containers/localstack .
+
+ENTRYPOINT ["/bin/sh"]
+CMD ["secrets.sh"]
